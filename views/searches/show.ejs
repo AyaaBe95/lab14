@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="topnav">
+    <a href="/" class="active">Your Books!</a>
+    <div id="myLinks">
+      <a href="/">Home</a>
+      <a href="/searches/new">Search the Google Books API</a>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+<script>
+  function myFunction() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+    <main>
+        <% books.forEach((book) => { %>
+        <div class="img-div"><img src=<%= book.image_url %> alt="image">
+          <h2><%= book.title %></h2>
+          <h3><%= book.author %></h3>  
+          <p> <%= book.description %></p>
+          <p> <%= book.isbn %> </p> 
+          <form action="/books" method="POST">
+            <input type="hidden" name="image_url" value="<%= book.image_url %>">
+            <input type="hidden" name="title" value="<%= book.title %>">
+            <input type="hidden" name="author" value="<%= book.author %>">
+            <input type="hidden" name="description" value="<%= book.description %>">
+            <input type="hidden" name="isbn" value="<%= book.isbn %>">
+            <input type="submit" value="Select this book!" id="buttonSelect">
+          </form>
+        </div>
+        <% }); %>
+    </main>
+    <footer>
+      
+    </footer>
+</body>
+</html>
