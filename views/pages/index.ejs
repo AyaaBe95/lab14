@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <%- include('layout/header'); %>
+<main>
+  <h2>Books shelf have <%= bookCount %> books</h2>
+  <% booksList.forEach((book) => { %>
+    <div class="img-div">
+    <img src=<%= book.image_url %> alt="image">
+        <h2><%= book.title %></h2>
+      <h3><%= book.author %></h3>  
+      <form action="/books/<%= book.id %>" method="GET">
+      <input type="submit" value="View Details" id="viewButton">
+    </form>
+  </div>
+    <% }); %>
+
+
+  
+
+</main>
+    <footer></footer>
+</body>
+</html>
